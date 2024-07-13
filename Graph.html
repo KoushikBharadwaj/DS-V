@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Spotify.com</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: background-image 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100vh;
+            color: black;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content:center;
+            width: 30%;
+            margin: auto;
+        }
+        canvas {
+            width: 100%;
+            max-width: 600px;
+        }
+        h1, label {
+            margin-bottom: 20px;
+        }
+        footer {
+            width: 100%;
+            text-align: center;
+            font-size: 1em;
+            color: black;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body id="chartPage">
+    <div class="container">
+        <h1>Spotify Streams Data</h1>
+        <label for="chartType">Select Chart Type:</label>
+        <select id="chartType" aria-label="Chart Type Selector" onchange="updateChart()">
+            <option value="bar">Bar</option>
+            <option value="line">Line</option>
+            <option value="pie">Pie</option>
+            <option value="doughnut">Doughnut</option>
+            <option value="radar">Radar</option>
+            <option value="polarArea">Polar Area</option>
+        </select>
+        <canvas id="myChart" aria-label="Chart Display" width="400" height="400"></canvas>
+    </div>
+    <footer style="background-color: grey;">
+        Copyright © 2024 Spotify.Com
+    </footer>
+
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        let currentChartType = 'bar'; // Default chart type
+        let backgroundImageMap = {
+            'bar': 'url("img1.png")',
+            'line': 'url("img2.png")',
+            'pie': 'url("cover.jpeg")',
+            'doughnut': 'url("img4.jpeg")',
+            'radar': 'url("img8.jpeg")',
+            'polarArea': 'url("img10.jpg")'
+        };
+
+        // Initial chart setup
+        let chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Song A', 'Song B', 'Song C', 'Song D', 'Song E', 'Song F'],
+                datasets: [{
+                    label: 'Streams (in thousands)',
+                    data: [150, 200, 180, 220, 170, 190],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(255, 159, 250, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.2)'
+                        },
+                        ticks: {
+                            color: 'white'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.2)'
+                        },
+                        ticks: {
+                            color: 'white'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'white'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Function to update the chart type and background image
+        function updateChart() {
+            const chartType = document.getElementById('chartType').value;
+            chart.destroy(); // Destroy the old chart
+            chart = new Chart(ctx, {
+                type: chartType,
+                data: {
+                    labels: ['Song A', 'Song B', 'Song C', 'Song D', 'Song E', 'Song F'],
+                    datasets: [{
+                        label: 'Streams (in thousands)',
+                        data: [150, 200, 180, 220, 170, 190],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(153, 102, 255, 0.7)',
+                            'rgba(255, 159, 64, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: chartType === 'pie' || chartType === 'doughnut' ? {} : {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.2)'
+                            },
+                            ticks: {
+                                color: 'white'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.2)'
+                            },
+                            ticks: {
+                                color: 'white'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: 'white'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Update background image
+            document.getElementById('chartPage').style.backgroundImage = backgroundImageMap[chartType];
+            currentChartType = chartType;
+        }
+
+        // Initial background image setup
+        document.getElementById('chartPage').style.backgroundImage = backgroundImageMap[currentChartType];
+    </script>
+</body>
+</html>
