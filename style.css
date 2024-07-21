@@ -1,29 +1,14 @@
-.login {
-    position: relative;
-    height: 100vh;
-    display: grid;
-    align-items: center;
-  }
-.container {
-position: relative;
-background-color: hsla(0, 0%, 10%, 0.1);
-border: 2px solid black;
-margin-inline: 1.5rem;
-padding: 2.5rem 1.5rem;
-border-radius: 1rem;
-backdrop-filter: blur(10px);
-}
-
-
-
-
-  body, html {
+/* Global styles */
+body, html {
     margin: 0;
     padding: 0;
     height: 100%;
     width: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Light grey background */
 }
 
+/* Login section */
 .login {
     display: flex;
     justify-content: center;
@@ -31,6 +16,7 @@ backdrop-filter: blur(10px);
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+    position: relative;
 }
 
 .login__img {
@@ -39,4 +25,43 @@ backdrop-filter: blur(10px);
     height: 100%;
     object-fit: cover;
     object-position: center;
-  }
+    z-index: -1;
+}
+
+/* Container for chart */
+.container {
+    color:white;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.331); /* Light background for container */
+    border: 2px solid #333; /* Dark border */
+    margin: 2rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    text-align: center;
+    max-width: 600px; /* Limit width for better readability */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+}
+
+/* Canvas styling */
+canvas {
+    width: 100%;
+    max-width: 800px; /* Ensure the chart fits within container */
+    height: 400px; /* Increased height for larger chart */
+    margin: auto; /* Center align */
+    display: block; /* Remove default inline display */
+    background-color: transparent !important; /* Transparent background for chart */
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Footer styling */
+footer {
+    width: 100%;
+    text-align: center;
+    font-size: 1em;
+    color: #333; /* Dark text color */
+    padding: 10px;
+    background-color: #f0f0f0; /* Light background */
+    border-top: 1px solid #ccc; /* Separator line */
+}
