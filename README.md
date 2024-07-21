@@ -33,13 +33,13 @@ A web application for visualizing Spotify's most streamed songs through interact
     - **Overview**: Provides team and supervisor details.
     - **Design**: Features a hero image and styled sections.
 
-    ![Home Page](screenshots/home_page.png)
+    ![Home Page](![Screenshot 2024-07-21 122130](https://github.com/user-attachments/assets/9cabc6d7-8af5-4c42-9282-8534b50498b6))
 
 - **Graph Page**:
     - **Chart Selection**: Choose different chart types from the dropdown menu.
     - **Real-Time Data**: Displays data from `data.csv`, with different chart types updating dynamically.
 
-    ![Graph Page](screenshots/graph_page.png)
+    ![Graph Page](![Screenshot 2024-07-21 122143](https://github.com/user-attachments/assets/7a0a4b51-40df-4ff5-a9ee-c5ce31eb8bb7))
 
 ## Code Explanation
 
